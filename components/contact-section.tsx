@@ -20,12 +20,12 @@ const contactInfo = [
   {
     icon: MapPin,
     label: "Location",
-    value: "Colombo, Sri Lanka"
+    value: "No. 13/4/1, Nithulathanne, Kundasale"
   },
    {
      icon: Phone,
     label: "Contact Number",
-     value: "+94 76 7065 517",
+     value: "+94 767 065 517",
      href: "tel:+94767065517"
   }
 ]

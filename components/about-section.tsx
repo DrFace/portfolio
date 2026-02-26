@@ -7,6 +7,18 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 
 const experiences = [
   {
+    company: "INSK Group",
+    role: "Executive Full Stack Developer",
+    period: "2026 – Present",
+    achievements: [
+      "Led and developed a sports news website using Next.js with a separate backend built in Laravel.",
+      "Designed and implemented an automated publishing workflow using n8n for article management and distribution.",
+      "Coordinate cross-functional teams, including Frontend, Backend, QA, UX, and Graphic Design.",
+      "Mentor junior developers on best practices in code quality, architecture, and version control.",
+      "Assist in architectural planning and participate in system design reviews."
+    ]
+  },
+  {
     company: "Sky Smart Technology (Pvt) Ltd",
     role: "Technical Lead / Project Manager",
     period: "2025 – 2025",
@@ -24,7 +36,7 @@ const experiences = [
   },
   {
     company: "Axcertro (Pvt) Ltd",
-    role: "Full Stack Developer",
+    role: "Full-Stack Developer Intern",
     period: "2024 – 2025",
     achievements: [
       "Developed enterprise-level web applications using React and Node.js",
@@ -48,7 +60,7 @@ const experiences = [
   {
     company: "IDAPZ Web Solution Company",
     role: "Junior Editor",
-    period: "2018 – 2029",
+    period: "2018 – 2019",
     achievements: [
       "Created content for the company",
       "Ensured customer satisfaction by handling day-to-day affairs",

@@ -45,7 +45,7 @@ export function HeroSection() {
               Technical Lead
             </h1>
             <h2 className="text-3xl md:text-4xl font-semibold text-muted-foreground">
-              Developer / Project Manager
+              Executive Full Stack Developer / Project Manager
             </h2>
           </motion.div>
 

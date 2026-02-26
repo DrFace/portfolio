@@ -9,46 +9,48 @@ import { Button } from "@/components/ui/button"
 
 const projects = [
   {
-    title: "Enterprise Resource Planning System",
-    description: "Comprehensive ERP solution for manufacturing companies with inventory management, production planning, and financial reporting modules.",
-    image: "https://images.pexels.com/photos/669615/pexels-photo-669615.jpeg",
-    technologies: ["React", "Node.js", "PostgreSQL", "Docker", "AWS"],
+    title: "Sports News Website",
+    description: "A high-performance news platform built with Next.js and Laravel, featuring automated article distribution using n8n.",
+    image: "https://images.unsplash.com/photo-1531415074941-03f6ad88998b?q=80&w=2000&auto=format&fit=crop",
+    technologies: ["Next.js", "Laravel", "n8n", "Tailwind CSS"],
+    category: "Full Stack",
+    link: "https://8jjcricket.com"
+  },
+  {
+    title: "Customer Relationship & Inventory Management System",
+    description: "A dual-purpose management system for tracking customer interactions and real-time inventory levels, optimizing business operations and stock control.",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2000&auto=format&fit=crop",
+    technologies: ["React", "Node.js", "MySQL", "Tailwind CSS"],
+    category: "Full Stack",
+    link: "https://nmd.drface.online/"
+  },
+  {
+    title: "Work Order Management System",
+    description: "Efficiency-focused system for managing and tracking industrial work orders, maintenance tasks, and resource allocation.",
+    image: "https://images.unsplash.com/photo-1586769852836-bc069f19e1b6?q=80&w=2000&auto=format&fit=crop",
+    technologies: ["React", "Node.js", "MySQL", "Tailwind CSS"],
     category: "Full Stack"
   },
   {
-    title: "Real-time Banking Dashboard",
-    description: "Secure banking dashboard with real-time transaction processing, fraud detection, and comprehensive analytics for financial institutions.",
-    image: "https://images.pexels.com/photos/187041/pexels-photo-187041.jpeg",
-    technologies: ["Next.js", "Laravel", "MySQL", "Redis", "WebSocket"],
+    title: "Maintenance Management System",
+    description: "Comprehensive platform for scheduling and monitoring equipment maintenance and facility repairs to ensure operational uptime.",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2000&auto=format&fit=crop",
+    technologies: ["Next.js", "Laravel", "PHP", "MySQL"],
     category: "Full Stack"
   },
   {
-    title: "IoT Smart Home Controller",
-    description: "Mobile and web application for controlling smart home devices with ESP32 integration, real-time monitoring, and automation rules.",
-    image: "https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg",
-    technologies: ["React Native", "Node.js", "MQTT", "ESP32", "MongoDB"],
+    title: "Andon Downtime Monitoring System",
+    description: "Real-time monitoring system for manufacturing floor downtime, visualizing machine status and alerts via IoT integration.",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1000",
+    technologies: ["IoT", "ESP32", "React", "Node.js", "MQTT"],
     category: "IoT"
   },
   {
-    title: "E-commerce Platform",
-    description: "Multi-vendor marketplace with payment gateway integration, inventory management, and advanced search and filtering capabilities.",
-    image: "https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg",
-    technologies: ["React", "Node.js", "Stripe", "PostgreSQL", "Elasticsearch"],
-    category: "Full Stack"
-  },
-  {
-    title: "Project Management Tool",
-    description: "Collaborative project management platform with kanban boards, time tracking, resource allocation, and team communication features.",
-    image: "https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg",
-    technologies: ["Next.js", "Python", "FastAPI", "PostgreSQL", "Redis"],
-    category: "Full Stack"
-  },
-  {
-    title: "Healthcare Management System",
-    description: "Patient management system with appointment scheduling, electronic health records, and telemedicine capabilities for clinics.",
-    image: "https://images.pexels.com/photos/4386466/pexels-photo-4386466.jpeg",
-    technologies: ["React", "Node.js", "MongoDB", "Socket.io", "WebRTC"],
-    category: "Full Stack"
+    title: "Air Suction Monitoring System",
+    description: "Industrial monitoring solution for air suction levels in manufacturing lines, ensuring operational efficiency and safety through real-time data.",
+    image: "https://images.unsplash.com/photo-1504868584819-f8eecf02bd51?q=80&w=2000&auto=format&fit=crop",
+    technologies: ["IoT", "Arduino", "Node.js", "Dashboard"],
+    category: "IoT"
   }
 ]
 
@@ -133,9 +135,13 @@ export function ProjectsSection() {
                     transition={{ duration: 0.3 }}
                   />
                   <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
-                    <Button size="icon" variant="secondary" className="rounded-full">
-                      <ExternalLink className="h-5 w-5" />
-                    </Button>
+                    {project.link && (
+                      <a href={project.link} target="_blank" rel="noopener noreferrer">
+                        <Button size="icon" variant="secondary" className="rounded-full">
+                          <ExternalLink className="h-5 w-5" />
+                        </Button>
+                      </a>
+                    )}
                     <Button size="icon" variant="secondary" className="rounded-full">
                       <Github className="h-5 w-5" />
                     </Button>

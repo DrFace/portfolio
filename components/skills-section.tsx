@@ -10,7 +10,7 @@ const skillCategories = [
   {
     icon: Code,
     title: "Technical",
-    skills: ["React", "Node.js", "Laravel", "PHP", "SQL", "Python", "C++", "Java", "RESTful APIs", "MVC", "Database Optimization"]
+    skills: ["Next.js", "React", "Node.js", "Laravel", "PHP", "SQL", "Python", "C++", "Java", "n8n automation", "RESTful APIs", "MVC", "Database Optimization"]
   },
   {
     icon: Palette,
