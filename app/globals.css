@@ -55,6 +55,11 @@
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+
+    --mesh-gradient-1: #6366f1;
+    --mesh-gradient-2: #a855f7;
+    --mesh-gradient-3: #ec4899;
+    --mesh-gradient-4: #3b82f6;
   }
 }
 

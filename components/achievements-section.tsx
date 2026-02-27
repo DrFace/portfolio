@@ -98,18 +98,23 @@ export function AchievementsSection() {
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
   return (
-    <section id="achievements" className="py-20 bg-secondary/10">
-      <div className="container mx-auto px-4">
+    <section id="achievements" className="py-24 relative overflow-hidden">
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Achievements</h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Measurable impact and recognition throughout my career
+          <span className="inline-block px-4 py-1.5 mb-6 text-sm font-medium tracking-wider uppercase bg-primary/10 text-primary rounded-full border border-primary/20 backdrop-blur-sm">
+            Impact
+          </span>
+          <h2 className="text-4xl md:text-6xl font-black mb-6 tracking-tight">
+            Key <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-500">Milestones</span>
+          </h2>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            Quantifying excellence through measurable impact and consistent delivery.
           </p>
         </motion.div>
 
@@ -117,24 +122,26 @@ export function AchievementsSection() {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-20"
         >
           {achievements.map((achievement, index) => {
             const Icon = achievement.icon
             return (
               <motion.div key={index} variants={itemVariants}>
-                <Card className="text-center hover:shadow-lg transition-shadow duration-300">
-                  <CardContent className="pt-6">
+                <Card className="group relative overflow-hidden bg-background/40 backdrop-blur-xl border-white/10 dark:border-white/5 hover:border-primary/50 transition-all duration-500 shadow-2xl">
+                   <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/10 to-purple-600/10 rounded-lg blur opacity-0 group-hover:opacity-100 transition duration-1000 group-hover:duration-200" />
+                   
+                   <CardContent className="relative pt-10 pb-8 text-center bg-background/60 dark:bg-zinc-950/60">
                     <motion.div
                       whileHover={{ scale: 1.1, rotate: 5 }}
-                      transition={{ type: "spring", stiffness: 300 }}
+                      className={`p-4 rounded-2xl bg-white/5 border border-white/10 inline-block mb-6 shadow-xl ${achievement.color.replace('text', 'bg').replace('500', '500/10')}`}
                     >
-                      <Icon className={`h-12 w-12 mx-auto mb-4 ${achievement.color}`} />
+                      <Icon className={`h-10 w-10 ${achievement.color}`} />
                     </motion.div>
-                    <div className="text-4xl font-bold mb-2">
+                    <div className="text-5xl font-black mb-2 tracking-tighter">
                       <Counter value={achievement.value} suffix={achievement.suffix} />
                     </div>
-                    <p className="text-muted-foreground">{achievement.label}</p>
+                    <p className="text-xs font-black uppercase tracking-[0.2em] text-muted-foreground">{achievement.label}</p>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -143,25 +150,31 @@ export function AchievementsSection() {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.4, duration: 0.6 }}
-          className="max-w-4xl mx-auto"
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={isInView ? { opacity: 1, scale: 1 } : {}}
+          transition={{ delay: 0.4, duration: 0.8 }}
+          className="max-w-4xl mx-auto relative group"
         >
-          <h3 className="text-2xl font-bold text-center mb-8">Key Highlights</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {highlights.map((highlight, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: -20 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: 0.6 + index * 0.1 }}
-                className="flex items-start gap-3 p-4 rounded-lg bg-background hover:bg-secondary/50 transition-colors"
-              >
-                <Star className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                <p className="text-muted-foreground">{highlight}</p>
-              </motion.div>
-            ))}
+          <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 via-purple-500/20 to-indigo-600/20 rounded-[2rem] blur-2xl opacity-50 group-hover:opacity-100 transition-opacity duration-1000" />
+          
+          <div className="relative p-10 md:p-14 bg-background/40 backdrop-blur-2xl border border-white/10 rounded-[2rem] shadow-3xl overflow-hidden">
+            <h3 className="text-3xl font-black text-center mb-12 tracking-tight">Technical <span className="italic text-primary">Highlights</span></h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
+              {highlights.map((highlight, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ delay: 0.6 + index * 0.05 }}
+                  className="flex items-start gap-4 py-2 group/h"
+                >
+                  <div className="h-6 w-6 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 group-hover/h:bg-primary/20 transition-colors">
+                    <Star className="h-3.5 w-3.5 text-primary" />
+                  </div>
+                  <p className="text-muted-foreground text-sm font-medium leading-relaxed group-hover/h:text-foreground transition-colors">{highlight}</p>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </motion.div>
       </div>

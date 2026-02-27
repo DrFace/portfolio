@@ -11,11 +11,13 @@ import { ContactSection } from "@/components/contact-section"
 import { Footer } from "@/components/footer"
 import { Cursor } from "@/components/crsor"
 import ScrollProgressBar from "@/components/scrollprogress";
+import { Background } from "@/components/background"
 
 
 export default function Home() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen relative overflow-hidden">
+      <Background />
       <Cursor/>
       <Navigation />
       <ScrollProgressBar />

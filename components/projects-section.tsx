@@ -102,27 +102,36 @@ export function ProjectsSection() {
     filter === "All" ? projects : projects.filter((p) => p.category === filter)
 
   return (
-    <section id="projects" className="py-20 bg-secondary/10">
-      <div className="container mx-auto px-4">
+    <section id="projects" className="py-24 relative overflow-hidden">
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Projects</h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-            Selected work across full-stack systems and industrial IoT
+          <span className="inline-block px-4 py-1.5 mb-6 text-sm font-medium tracking-wider uppercase bg-primary/10 text-primary rounded-full border border-primary/20 backdrop-blur-sm">
+            Portfolio
+          </span>
+          <h2 className="text-4xl md:text-6xl font-black mb-6 tracking-tight">
+            Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-500">Creations</span>
+          </h2>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">
+            A showcase of complex systems, industrial IoT solutions, and high-performance web applications.
           </p>
 
-          <div className="flex flex-wrap justify-center gap-2">
+          <div className="flex flex-wrap justify-center gap-3">
             {categories.map((category) => (
               <Button
                 key={category}
                 variant={filter === category ? "default" : "outline"}
                 onClick={() => setFilter(category)}
-                className="transition-all"
+                className={`transition-all duration-300 rounded-xl px-6 h-11 text-sm font-bold uppercase tracking-wider ${
+                  filter === category 
+                    ? "bg-primary shadow-lg shadow-primary/25 border-transparent" 
+                    : "bg-white/5 border-white/10 backdrop-blur-md hover:bg-white/10"
+                }`}
               >
                 {category}
               </Button>
@@ -134,59 +143,94 @@ export function ProjectsSection() {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-1 md:grid-cols-12 gap-6"
         >
-          {filteredProjects.map((project, index) => (
-            <motion.div key={index} variants={cardVariants} layout>
-              <Card className="h-full hover:shadow-xl transition-shadow duration-300 overflow-hidden group">
-                <div className="relative overflow-hidden h-48">
-                  <motion.img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover"
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
-                    {project.link && (
-                      <a
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Button
-                          size="icon"
-                          variant="secondary"
-                          className="rounded-full"
+          {filteredProjects.map((project, index) => {
+            // Pattern for bento grid spans
+            const spans = [
+              "md:col-span-8 md:row-span-1", // 0
+              "md:col-span-4 md:row-span-1", // 1
+              "md:col-span-4 md:row-span-1", // 2
+              "md:col-span-4 md:row-span-1", // 3
+              "md:col-span-4 md:row-span-1", // 4
+              "md:col-span-6 md:row-span-1", // 5
+              "md:col-span-6 md:row-span-1", // 6
+            ]
+
+            return (
+              <motion.div 
+                key={index} 
+                variants={cardVariants} 
+                layout 
+                className={spans[index % spans.length]}
+              >
+                <Card className="h-full group relative overflow-hidden bg-background/40 backdrop-blur-xl border-white/10 dark:border-white/5 hover:border-primary/50 transition-all duration-500 shadow-2xl flex flex-col">
+                  <div className="relative overflow-hidden aspect-video md:aspect-auto md:h-64">
+                    <motion.img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-80" />
+                    
+                    <div className="absolute top-4 right-4 flex gap-2">
+                       {project.category && (
+                         <Badge className="bg-primary/80 backdrop-blur-md text-[10px] uppercase font-bold tracking-widest px-3 py-1">
+                           {project.category}
+                         </Badge>
+                       )}
+                    </div>
+
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4 z-20">
+                      {project.link && (
+                        <a
+                          href={project.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75"
                         >
-                          <ExternalLink className="h-5 w-5" />
-                        </Button>
-                      </a>
-                    )}
-                    {/* keep GitHub button as UI-only unless you add per-project repos */}
-                    <Button size="icon" variant="secondary" className="rounded-full">
-                      <Github className="h-5 w-5" />
-                    </Button>
+                          <Button
+                            size="icon"
+                            variant="secondary"
+                            className="rounded-2xl h-12 w-12 shadow-xl hover:scale-110 transition-all bg-white text-zinc-950"
+                          >
+                            <ExternalLink className="h-5 w-5" />
+                          </Button>
+                        </a>
+                      )}
+                      <Button 
+                        size="icon" 
+                        variant="secondary" 
+                        className="rounded-2xl h-12 w-12 shadow-xl hover:scale-110 transition-all bg-white text-zinc-950 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-150"
+                      >
+                        <Github className="h-5 w-5" />
+                      </Button>
+                    </div>
                   </div>
-                </div>
 
-                <CardHeader>
-                  <CardTitle>{project.title}</CardTitle>
-                  <CardDescription>{project.description}</CardDescription>
-                </CardHeader>
+                  <div className="p-6 space-y-4 flex-grow flex flex-col">
+                    <div>
+                      <CardTitle className="text-2xl font-bold mb-2 group-hover:text-primary transition-colors">{project.title}</CardTitle>
+                      <CardDescription className="text-base line-clamp-2 leading-relaxed">{project.description}</CardDescription>
+                    </div>
 
-                <CardContent>
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.map((tech, i) => (
-                      <Badge key={i} variant="secondary">
-                        {tech}
-                      </Badge>
-                    ))}
+                    <div className="flex flex-wrap gap-2 mt-auto">
+                      {project.technologies.slice(0, 4).map((tech, i) => (
+                        <Badge key={i} variant="secondary" className="bg-white/5 border-white/10 text-xs font-medium px-2 py-0.5 rounded-md backdrop-blur-sm">
+                          {tech}
+                        </Badge>
+                      ))}
+                      {project.technologies.length > 4 && (
+                        <Badge variant="secondary" className="bg-white/5 border-white/10 text-[10px] font-bold px-2 py-0.5 rounded-md">
+                          +{project.technologies.length - 4}
+                        </Badge>
+                      )}
+                    </div>
                   </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
+                </Card>
+              </motion.div>
+            )
+          })}
         </motion.div>
       </div>
     </section>

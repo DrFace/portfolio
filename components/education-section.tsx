@@ -46,8 +46,8 @@ export function EducationSection() {
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
   return (
-    <section id="education" className="py-20">
-      <div className="container mx-auto px-4">
+    <section id="education" className="py-24 relative overflow-hidden">
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
@@ -55,9 +55,14 @@ export function EducationSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Education</h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Academic foundation and continuous learning journey
+          <span className="inline-block px-4 py-1.5 mb-6 text-sm font-medium tracking-wider uppercase bg-primary/10 text-primary rounded-full border border-primary/20 backdrop-blur-sm">
+            Foundation
+          </span>
+          <h2 className="text-4xl md:text-6xl font-black mb-6 tracking-tight">
+            Education <span className="text-primary">&</span> Academy
+          </h2>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            Building a strong academic base while maintaining a commitment to lifelong learning.
           </p>
         </motion.div>
 
@@ -65,40 +70,43 @@ export function EducationSection() {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="max-w-4xl mx-auto space-y-6"
+          className="max-w-4xl mx-auto space-y-8"
         >
           {education.map((edu, index) => (
             <motion.div key={index} variants={itemVariants}>
-              <Card className="hover:shadow-lg transition-shadow duration-300">
-                <CardHeader>
-                  <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+              <Card className="group relative overflow-hidden bg-background/40 backdrop-blur-xl border-white/10 dark:border-white/5 hover:border-primary/50 transition-all duration-500 shadow-2xl">
+                 {/* Glowing background effect on hover */}
+                 <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/10 to-purple-600/10 rounded-lg blur opacity-0 group-hover:opacity-100 transition duration-1000 group-hover:duration-200" />
+                  
+                <div className="relative p-8 bg-background/60 dark:bg-zinc-950/60">
+                  <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
                     <div className="flex-1">
-                      <CardTitle className="text-2xl flex items-center gap-3 mb-2">
-                        <GraduationCap className="h-6 w-6 text-primary" />
-                        {edu.degree}
-                      </CardTitle>
-                      <CardDescription className="text-lg">
+                      <div className="flex items-center gap-4 mb-3">
+                        <div className="p-3 bg-primary/20 rounded-xl group-hover:scale-110 transition-transform duration-500">
+                          <GraduationCap className="h-6 w-6 text-primary" />
+                        </div>
+                        <CardTitle className="text-2xl font-bold">{edu.degree}</CardTitle>
+                      </div>
+                      <CardDescription className="text-lg font-medium text-foreground/80">
                         {edu.institution}
                       </CardDescription>
+                      <p className="text-muted-foreground mt-4 leading-relaxed">{edu.description}</p>
                     </div>
-                    <div className="flex flex-col items-start md:items-end gap-2">
-                      <div className="flex items-center gap-2 text-muted-foreground">
-                        <Calendar className="h-4 w-4" />
+                    <div className="flex flex-col items-start md:items-end gap-3 shrink-0">
+                      <div className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-muted-foreground bg-white/5 px-3 py-1.5 rounded-full border border-white/10">
+                        <Calendar className="h-3 w-3" />
                         <span>{edu.period}</span>
                       </div>
-                      <span className={`px-3 py-1 rounded-full text-sm font-medium ${
+                      <span className={`px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest ${
                         edu.status === "Pursuing"
-                          ? "bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300"
-                          : "bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300"
+                          ? "bg-blue-500 text-white shadow-lg shadow-blue-500/20"
+                          : "bg-green-500 text-white shadow-lg shadow-green-500/20"
                       }`}>
                         {edu.status}
                       </span>
                     </div>
                   </div>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">{edu.description}</p>
-                </CardContent>
+                </div>
               </Card>
             </motion.div>
           ))}
