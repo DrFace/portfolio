@@ -1,18 +1,16 @@
 "use client"
-import professionalPhoto from "@/resource/professionalphoto.jpeg"
 
+import professionalPhoto from "@/public/professionalphoto.jpeg"
 import { motion } from "framer-motion"
 import { Download, Mail, ArrowDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { withBasePath } from "@/lib/paths"
 
 export function HeroSection() {
-  
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href)
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
-    }
+    if (element) element.scrollIntoView({ behavior: "smooth" })
   }
 
   return (
@@ -31,7 +29,7 @@ export function HeroSection() {
           >
             <Avatar className="w-48 h-72 border-4 border-primary shadow-2xl">
               <AvatarImage src={professionalPhoto.src} alt="Professional Photo" />
-              <AvatarFallback className="text-4xl">TL</AvatarFallback>
+              <AvatarFallback className="text-4xl">ML</AvatarFallback>
             </Avatar>
           </motion.div>
 
@@ -42,10 +40,10 @@ export function HeroSection() {
             className="space-y-4"
           >
             <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
-              Technical Lead
+              Malindu Liyanage
             </h1>
-            <h2 className="text-3xl md:text-4xl font-semibold text-muted-foreground">
-              Executive Full Stack Developer / Project Manager
+            <h2 className="text-2xl md:text-4xl font-semibold text-muted-foreground">
+              Technical Lead • Executive Full Stack Developer • Project Manager
             </h2>
           </motion.div>
 
@@ -55,7 +53,7 @@ export function HeroSection() {
             transition={{ delay: 0.5, duration: 0.6 }}
             className="text-xl md:text-2xl text-muted-foreground max-w-2xl"
           >
-            Building scalable systems and leading high-performing teams to deliver exceptional digital solutions
+            Full-stack development and technical leadership across web & mobile projects.
           </motion.p>
 
           <motion.div
@@ -72,10 +70,17 @@ export function HeroSection() {
               <Mail className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
               Get in Touch
             </Button>
-            <Button size="lg" variant="outline" className="group">
-              <Download className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
-              Download Resume
-            </Button>
+
+            <a
+              href={withBasePath("/malinduliyanagecv.pdf")}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button size="lg" variant="outline" className="group">
+                <Download className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
+                Download Resume
+              </Button>
+            </a>
           </motion.div>
 
           <motion.div

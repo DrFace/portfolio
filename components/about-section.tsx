@@ -3,7 +3,13 @@
 import { useRef } from "react"
 import { motion, useInView } from "framer-motion"
 import { Briefcase, Calendar } from "lucide-react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 
 const experiences = [
   {
@@ -11,81 +17,71 @@ const experiences = [
     role: "Executive Full Stack Developer",
     period: "2026 – Present",
     achievements: [
-      "Led and developed a sports news website using Next.js with a separate backend built in Laravel.",
-      "Designed and implemented an automated publishing workflow using n8n for article management and distribution.",
+      "Create and maintain detailed project plans; manage scope, timelines, and resource allocation.",
       "Coordinate cross-functional teams, including Frontend, Backend, QA, UX, and Graphic Design.",
+      "Lead small development teams to deliver web and mobile solutions on schedule.",
       "Mentor junior developers on best practices in code quality, architecture, and version control.",
-      "Assist in architectural planning and participate in system design reviews."
-    ]
+      "Assist in architectural planning and participate in system design reviews.",
+      "Led and developed a sports news website using Next.js with a separate backend built in Laravel.",
+      "Contributed to community and sports news websites using WordPress.",
+      "Designed and implemented an automated publishing workflow using n8n for article management and distribution.",
+    ],
   },
   {
     company: "Sky Smart Technology (Pvt) Ltd",
-    role: "Technical Lead / Project Manager",
+    role: "Technical Lead | Project Manager",
     period: "2025 – 2025",
     achievements: [
-      "Leading cross-functional teams of 10+ developers and designers",
-      "Architecting scalable microservices infrastructure serving 100K+ users",
-      "Implementing Agile methodologies resulting in 40% faster delivery cycles",
-      "Mentoring junior developers and conducting code reviews",
-      "Managing client relationships and translating business requirements into technical solutions",
-      "Create and maintain project plans; manage scope and resource allocation",
-      "Coordinate cross-functional teams (frontend, backend, QA, UX,hardware) ",
-      "Leading and contributing to electronic projects, such as developing Andon systems and integrating hardware with software solutions",
-      "Hire, onboard, and upskill team members; run training and knowledge sharing sessions",
-    ]
+      "Create and maintain project plans; manage scope and resource allocation.",
+      "Coordinate cross-functional teams (frontend, backend, QA, UX, hardware).",
+      "Coordinating small development teams to deliver web and mobile solutions.",
+      "Mentoring junior developers in best practices for code quality and version control.",
+      "Assisting in architectural planning and system design reviews.",
+      "Leading and contributing to electronic projects (e.g., Andon systems and hardware/software integration).",
+      "Hire, onboard, and upskill team members; run training and knowledge-sharing sessions.",
+    ],
   },
   {
     company: "Axcertro (Pvt) Ltd",
     role: "Full-Stack Developer Intern",
     period: "2024 – 2025",
     achievements: [
-      "Developed enterprise-level web applications using React and Node.js",
-      "Optimized database queries reducing response times by 60%",
-      "Integrated RESTful APIs and third-party services",
-      "Collaborated with UX team to implement responsive designs",
-      "Led migration from monolithic to microservices architecture"
-    ]
+      "Developed responsive front-end components using HTML, CSS, JavaScript, and React.",
+      "Implemented server-side APIs and business logic using Laravel, PHP, and Node.js.",
+      "Integrated MySQL databases and optimized queries for performance.",
+      "Collaborated in Agile sprints and participated in code reviews.",
+    ],
   },
   {
     company: "Sampath Bank PLC",
     role: "Intern",
     period: "2021 – 2022",
     achievements: [
-      "Calculated, edited, and certified bank statements for compliance",
-      "Created and managed content for internal and external communications",
-      "Ensured accuracy and consistency across multiple document formats"
-     
-    ]
+      "Calculated, edited, and certified bank statements for compliance.",
+      "Created and managed content for internal and external communications.",
+      "Ensured accuracy and consistency across multiple document formats.",
+    ],
   },
   {
     company: "IDAPZ Web Solution Company",
     role: "Junior Editor",
     period: "2018 – 2019",
     achievements: [
-      "Created content for the company",
-      "Ensured customer satisfaction by handling day-to-day affairs",
-      "Managing the company websites and social media",
-      "Managed multiple projects simultaneously with tight deadlines"    ]
-  }
+      "Created content for the company.",
+      "Ensured customer satisfaction by handling day-to-day affairs.",
+      "Managing the company websites and social media.",
+    ],
+  },
 ]
 
 const containerVariants = {
   hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2
-    }
-  }
+  visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
 }
 
 const itemVariants = {
   hidden: { opacity: 0, x: -30 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: { duration: 0.6 }
-  }
+  visible: { opacity: 1, x: 0, transition: { duration: 0.6 } },
 }
 
 export function AboutSection() {
@@ -104,7 +100,7 @@ export function AboutSection() {
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4">Experience</h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            A journey of continuous growth, innovation, and leadership in software development
+            Delivery-focused leadership and full-stack development across web, mobile, and IoT projects
           </p>
         </motion.div>
 
@@ -141,7 +137,7 @@ export function AboutSection() {
                         key={i}
                         initial={{ opacity: 0, x: -20 }}
                         animate={isInView ? { opacity: 1, x: 0 } : {}}
-                        transition={{ delay: index * 0.2 + i * 0.1 }}
+                        transition={{ delay: index * 0.2 + i * 0.05 }}
                         className="flex items-start gap-2"
                       >
                         <span className="text-primary mt-1">•</span>

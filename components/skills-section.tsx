@@ -9,53 +9,44 @@ import { Badge } from "@/components/ui/badge"
 const skillCategories = [
   {
     icon: Code,
-    title: "Technical",
-    skills: ["Next.js", "React", "Node.js", "Laravel", "PHP", "SQL", "Python", "C++", "Java", "n8n automation", "RESTful APIs", "MVC", "Database Optimization"]
-  },
-  {
-    icon: Palette,
-    title: "Frontend",
-    skills: ["HTML", "CSS", "JavaScript", "Bootstrap", "Tailwind CSS", "Responsive Design", "UI/UX"]
+    title: "Programming",
+    skills: ["C++", "Python", "PHP", "Java", "HTML", "SQL", "JavaScript", "React", "Laravel", "Next.js"],
   },
   {
     icon: Server,
-    title: "DevOps",
-    skills: ["Git", "CI/CD", "Docker", "GitHub Actions", "Linux", "Deployment"]
-  },
-  {
-    icon: Cpu,
-    title: "Hardware",
-    skills: ["IoT Integration", "ESP32", "Arduino", "Sensor Integration", "Embedded Systems"]
-  },
-  {
-    icon: Users,
-    title: "Leadership",
-    skills: ["Team Leadership", "Mentoring", "Agile", "Kanban", "Scrum", "System Architecture", "Client Management"]
+    title: "Architecture & Backend",
+    skills: ["Software architecture design", "REST APIs", "MySQL", "Node.js", "Laravel", "Database optimization"],
   },
   {
     icon: Wrench,
-    title: "Tools",
-    skills: ["Jira", "Trello", "Notion", "GitHub", "Figma", "MS Office", "Adobe Suite", "Discord", "Slack"]
-  }
+    title: "Automation & Tools",
+    skills: ["Basic n8n automation", "Git", "MS Office", "Adobe packages"],
+  },
+  {
+    icon: Cpu,
+    title: "Hardware & Networking",
+    skills: ["Computer hardware knowledge", "Electronics", "Machinery & network knowledge"],
+  },
+  {
+    icon: Users,
+    title: "Delivery & Management",
+    skills: ["Project management (Kanban)", "Mentoring", "Team coordination", "Code quality & version control"],
+  },
+  {
+    icon: Palette,
+    title: "Media & Growth",
+    skills: ["Basic graphics knowledge", "Basic SEO knowledge", "Social media management (Facebook, YouTube, Reddit, Twitch, Discord)"],
+  },
 ]
 
 const containerVariants = {
   hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15
-    }
-  }
+  visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
 }
 
 const cardVariants = {
   hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5 }
-  }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 }
 
 export function SkillsSection() {
@@ -72,9 +63,9 @@ export function SkillsSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Skills & Expertise</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">Skills</h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            A comprehensive toolkit for building modern, scalable applications
+            Core strengths across engineering, delivery, and technical leadership
           </p>
         </motion.div>
 
@@ -102,6 +93,7 @@ export function SkillsSection() {
                       {category.title}
                     </CardTitle>
                   </CardHeader>
+
                   <CardContent>
                     <div className="flex flex-wrap gap-2">
                       {category.skills.map((skill, i) => (
@@ -109,7 +101,7 @@ export function SkillsSection() {
                           key={i}
                           initial={{ opacity: 0, scale: 0.8 }}
                           animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                          transition={{ delay: index * 0.15 + i * 0.05 }}
+                          transition={{ delay: index * 0.15 + i * 0.04 }}
                         >
                           <Badge
                             variant="secondary"

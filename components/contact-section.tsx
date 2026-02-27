@@ -2,53 +2,54 @@
 
 import { useRef, useState } from "react"
 import { motion, useInView } from "framer-motion"
-import { Mail, MapPin, Linkedin, Github, Twitter, Phone, Send } from "lucide-react"
+import { Mail, MapPin, Linkedin, Github, Globe, Phone, Send } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
 import { useToast } from "@/hooks/use-toast"
-// import malinduliyanagecv from "@/resource/malinduliyanagecv.pdf"
+import { withBasePath } from "@/lib/paths"
 
 const contactInfo = [
   {
     icon: Mail,
     label: "Email",
     value: "praveenliyanage1998@gmail.com",
-    href: "mailto:praveenliyanage1998@gmail.com"
+    href: "mailto:praveenliyanage1998@gmail.com",
   },
   {
     icon: MapPin,
     label: "Location",
-    value: "No. 13/4/1, Nithulathanne, Kundasale"
+    value: "No. 13/4/1, Nithulathanne, Kundasale",
   },
-   {
-     icon: Phone,
+  {
+    icon: Phone,
     label: "Contact Number",
-     value: "+94 767 065 517",
-     href: "tel:+94767065517"
-  }
+    value: "+94 767 065 517",
+    href: "tel:+94767065517",
+  },
 ]
 
 const socialLinks = [
+  // NOTE: Your PDF did not include a LinkedIn URL annotation; set it here if you want.
   {
     icon: Linkedin,
     label: "LinkedIn",
     href: "https://linkedin.com",
-    color: "hover:text-blue-500"
+    color: "hover:text-blue-500",
   },
   {
     icon: Github,
     label: "GitHub",
-    href: "https://github.com",
-    color: "hover:text-gray-700 dark:hover:text-gray-300"
+    href: "https://github.com/DrFace",
+    color: "hover:text-gray-700 dark:hover:text-gray-300",
   },
   {
-    icon: Twitter,
-    label: "Twitter",
-    href: "https://twitter.com",
-    color: "hover:text-sky-500"
-  }
+    icon: Globe,
+    label: "Portfolio",
+    href: "https://drface.github.io/portfolio/",
+    color: "hover:text-primary",
+  },
 ]
 
 export function ContactSection() {
@@ -58,7 +59,7 @@ export function ContactSection() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    message: ""
+    message: "",
   })
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -70,11 +71,10 @@ export function ContactSection() {
     setFormData({ name: "", email: "", message: "" })
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData(prev => ({
-      ...prev,
-      [e.target.name]: e.target.value
-    }))
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
   return (
@@ -89,7 +89,7 @@ export function ContactSection() {
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4">Get In Touch</h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Let's discuss how we can work together to bring your ideas to life
+            Let’s discuss how we can work together.
           </p>
         </motion.div>
 
@@ -104,7 +104,7 @@ export function ContactSection() {
                 <h3 className="text-xl font-semibold mb-4 text-center">My CV</h3>
                 <div className="w-full h-[600px]">
                   <iframe
-                    src="/resource/malinduliyanagecv.pdf"
+                    src={withBasePath("/malinduliyanagecv.pdf")}
                     width="100%"
                     height="600px"
                     className="border rounded-lg"
@@ -139,7 +139,10 @@ export function ContactSection() {
                           <div>
                             <p className="text-sm text-muted-foreground">{info.label}</p>
                             {info.href ? (
-                              <a href={info.href} className="text-lg font-medium hover:text-primary transition-colors">
+                              <a
+                                href={info.href}
+                                className="text-lg font-medium hover:text-primary transition-colors"
+                              >
                                 {info.value}
                               </a>
                             ) : (
@@ -174,6 +177,8 @@ export function ContactSection() {
                           whileHover={{ scale: 1.2, rotate: 5 }}
                           whileTap={{ scale: 0.9 }}
                           className={`p-3 bg-secondary rounded-lg transition-colors ${social.color}`}
+                          aria-label={social.label}
+                          title={social.label}
                         >
                           <Icon className="h-6 w-6" />
                         </motion.a>
@@ -189,14 +194,55 @@ export function ContactSection() {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.6 }}
             >
-              <a href="/resource/malinduliyanagecv.pdf" target="_blank" rel="noopener noreferrer">
+              <a
+                href={withBasePath("/malinduliyanagecv.pdf")}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Button variant="outline" className="w-full" size="lg">
                   Download Resume
                 </Button>
               </a>
-
             </motion.div>
           </motion.div>
+        </div>
+
+        {/* Contact form kept (optional) */}
+        <div className="max-w-5xl mx-auto mt-10">
+          <Card>
+            <CardContent className="pt-6">
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <Input
+                    name="name"
+                    placeholder="Your Name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                  />
+                  <Input
+                    name="email"
+                    type="email"
+                    placeholder="Your Email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <Textarea
+                  name="message"
+                  placeholder="Your Message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                />
+                <Button type="submit" className="w-full">
+                  <Send className="mr-2 h-4 w-4" />
+                  Send Message
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </section>

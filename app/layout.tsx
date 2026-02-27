@@ -1,20 +1,23 @@
-import './globals.css'
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import { ThemeProvider } from '@/components/theme-provider'
-import { Toaster } from '@/components/ui/toaster'
+import "./globals.css"
+import type { Metadata } from "next"
+import { Inter } from "next/font/google"
+import { ThemeProvider } from "@/components/theme-provider"
+import { Toaster } from "@/components/ui/toaster"
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: 'Technical Lead | Developer | Project Manager - Portfolio',
-  description: 'Professional portfolio showcasing expertise in software development, team leadership, and project management. Specializing in React, Node.js, and full-stack development.',
-  keywords: 'Technical Lead, Software Developer, Project Manager, Full Stack Developer, React, Node.js, Portfolio',
-  authors: [{ name: 'Your Name' }],
+  title: "Malindu Liyanage | Technical Lead | Executive Full Stack Developer",
+  description:
+    "Portfolio of Malindu Liyanage — Technical Lead and Executive Full Stack Developer. Full-stack web and mobile delivery, team leadership, and project management.",
+  keywords:
+    "Malindu Liyanage, Technical Lead, Executive Full Stack Developer, Project Manager, Next.js, React, Laravel, Node.js, PHP, MySQL, n8n, Portfolio",
+  authors: [{ name: "Malindu Liyanage" }],
   openGraph: {
-    title: 'Technical Lead | Developer | Project Manager',
-    description: 'Professional portfolio showcasing expertise in software development and leadership',
-    type: 'website',
+    title: "Malindu Liyanage | Technical Lead",
+    description:
+      "Technical Lead and Executive Full Stack Developer — full-stack engineering, leadership, and delivery.",
+    type: "website",
   },
 }
 
