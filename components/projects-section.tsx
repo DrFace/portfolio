@@ -18,9 +18,8 @@ const projects = [
     title: "Sports News Website",
     description:
       "High-performance sports news platform built with Next.js and Laravel, featuring automation with n8n.",
-    image:
-      "https://images.unsplash.com/photo-1531415074941-03f6ad88998b?q=80&w=2000&auto=format&fit=crop",
-    technologies: ["Next.js", "Laravel", "n8n", "Tailwind CSS"],
+    image: "/projects/8jj-cricket.png",
+    technologies: ["Next.js", "Laravel", "n8n", "Tailwind CSS", "TypeScript","Blade", "MySQL"],
     category: "Full Stack",
     link: "https://8jjcricket.com",
   },
@@ -28,55 +27,41 @@ const projects = [
     title: "Customer Relationship & Inventory Management System",
     description:
       "Management system for tracking customer interactions and inventory levels to optimize operations.",
-    image:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2000&auto=format&fit=crop",
-    technologies: ["React", "Node.js", "MySQL", "Tailwind CSS"],
+    image: "/projects/namerathna.png",
+    technologies: ["React", "Laravel", "MySQL", "CSS", "PHP"],
     category: "Full Stack",
     link: "https://nmd.drface.online/",
-  },
-  {
-    title: "E-commerce Website",
-    description:
-      "E-commerce web solution with product management and responsive UI.",
-    image:
-      "https://images.unsplash.com/photo-1515169067865-5387ec356754?q=80&w=2000&auto=format&fit=crop",
-    technologies: ["React", "Node.js", "MySQL"],
-    category: "Full Stack",
   },
   {
     title: "Work Order Management System",
     description:
       "System for managing industrial work orders, maintenance tasks, and resource allocation.",
-    image:
-      "https://images.unsplash.com/photo-1586769852836-bc069f19e1b6?q=80&w=2000&auto=format&fit=crop",
-    technologies: ["React", "Node.js", "MySQL"],
+    image: "/projects/work-order-final.jpg",
+    technologies: ["JavaScript", "PHP", "MySQL", "CSS"],
     category: "Full Stack",
   },
   {
     title: "Maintenance Management System",
     description:
       "Platform for scheduling and monitoring equipment maintenance and facility repairs.",
-    image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2000&auto=format&fit=crop",
-    technologies: ["Next.js", "Laravel", "MySQL"],
+    image: "/projects/maintenance-system.png",
+    technologies: ["JavaScript", "Laravel", "MySQL"],
     category: "Full Stack",
   },
   {
     title: "Andon Downtime Monitoring System",
     description:
       "Real-time downtime monitoring for manufacturing floors with alerts and status visualization.",
-    image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1000",
-    technologies: ["IoT", "ESP32", "React", "Node.js", "MQTT"],
+    image: "/projects/andon-system.jpg",
+    technologies: ["IoT", "ESP32", "Bootstrap", "Python", "MQTT"],
     category: "IoT",
   },
   {
     title: "Air Suction Monitoring System",
     description:
       "Industrial monitoring solution for air suction levels with real-time dashboard reporting.",
-    image:
-      "https://images.unsplash.com/photo-1504868584819-f8eecf02bd51?q=80&w=2000&auto=format&fit=crop",
-    technologies: ["IoT", "Arduino", "Node.js"],
+    image: "/projects/air-suction-system.jpg",
+    technologies: ["IoT", "Arduino", "Bootstrap"],
     category: "IoT",
   },
 ]
@@ -165,11 +150,11 @@ export function ProjectsSection() {
                 className={spans[index % spans.length]}
               >
                 <Card className="h-full group relative overflow-hidden bg-background/40 backdrop-blur-xl border-white/10 dark:border-white/5 hover:border-primary/50 transition-all duration-500 shadow-2xl flex flex-col">
-                  <div className="relative overflow-hidden aspect-video md:aspect-auto md:h-64">
+                  <div className="relative overflow-hidden aspect-video md:aspect-auto md:h-64 bg-zinc-900/40 p-2">
                     <motion.img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-80" />
                     

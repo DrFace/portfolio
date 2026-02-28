@@ -10,32 +10,44 @@ const skillCategories = [
   {
     icon: Code,
     title: "Programming",
-    skills: ["C++", "Python", "PHP", "Java", "HTML", "SQL", "JavaScript", "React", "Laravel", "Next.js"],
+    color: "from-blue-500/20 to-cyan-500/20",
+    textColor: "text-blue-400",
+    skills: ["C++", "Python", "PHP", "Java", "HTML", "SQL", "JavaScript", "React", "Next.js"],
   },
   {
     icon: Server,
-    title: "Architecture & Backend",
-    skills: ["Software architecture design", "REST APIs", "MySQL", "Node.js", "Laravel", "Database optimization"],
+    title: "Stack & Logic",
+    color: "from-purple-500/20 to-pink-500/20",
+    textColor: "text-purple-400",
+    skills: ["Laravel", "REST APIs", "MySQL", "Node.js", "Software Architecture", "Database Optimization"],
   },
   {
     icon: Wrench,
-    title: "Automation & Tools",
-    skills: ["Basic n8n automation", "Git", "MS Office", "Adobe packages"],
+    title: "Automation",
+    color: "from-emerald-500/20 to-teal-500/20",
+    textColor: "text-emerald-400",
+    skills: ["n8n Automation", "Git", "Version Control", "CI/CD Basics"],
   },
   {
     icon: Cpu,
-    title: "Hardware & Networking",
-    skills: ["Computer hardware knowledge", "Electronics", "Machinery & network knowledge"],
+    title: "Hardware",
+    color: "from-orange-500/20 to-amber-500/20",
+    textColor: "text-orange-400",
+    skills: ["IoT Architecture", "Electronics", "Networking", "Hardware Engineering"],
   },
   {
     icon: Users,
-    title: "Delivery & Management",
-    skills: ["Project management (Kanban)", "Mentoring", "Team coordination", "Code quality & version control"],
+    title: "Management",
+    color: "from-indigo-500/20 to-violet-500/20",
+    textColor: "text-indigo-400",
+    skills: ["Kanban", "Mentoring", "Team Coordination", "Technical Writing"],
   },
   {
     icon: Palette,
-    title: "Media & Growth",
-    skills: ["Basic graphics knowledge", "Basic SEO knowledge", "Social media management (Facebook, YouTube, Reddit, Twitch, Discord)"],
+    title: "Creative",
+    color: "from-rose-500/20 to-orange-500/20",
+    textColor: "text-rose-400",
+    skills: ["Graphics Design", "SEO", "Social Media", "Community Management"],
   },
 ]
 
@@ -78,18 +90,18 @@ export function SkillsSection() {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="grid grid-cols-1 md:grid-cols-6 gap-6 auto-rows-[16rem]"
+          className="grid grid-cols-1 md:grid-cols-12 gap-6"
         >
           {skillCategories.map((category, index) => {
             const Icon = category.icon
             // Define different span patterns for a Bento effect
             const spans = [
-              "md:col-span-3 md:row-span-2", // 0
-              "md:col-span-3 md:row-span-1", // 1
-              "md:col-span-2 md:row-span-1", // 2
-              "md:col-span-2 md:row-span-2", // 3
-              "md:col-span-2 md:row-span-1", // 4
-              "md:col-span-6 md:row-span-1", // 5
+              "md:col-span-8", // 0
+              "md:col-span-4", // 1
+              "md:col-span-4", // 2
+              "md:col-span-4", // 3
+              "md:col-span-4", // 4
+              "md:col-span-12", // 5
             ]
             
             return (
@@ -100,15 +112,15 @@ export function SkillsSection() {
                 whileHover={{ y: -5 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
-                <Card className="h-full group relative overflow-hidden bg-background/40 backdrop-blur-xl border-white/10 dark:border-white/5 hover:border-primary/50 transition-all duration-500 shadow-2xl">
-                  {/* Glowing background effect on hover */}
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/30 to-purple-600/30 rounded-lg blur opacity-0 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+                <Card className="h-full group relative overflow-hidden bg-background/20 backdrop-blur-xl border-white/5 dark:border-white/5 hover:border-primary/50 transition-all duration-500 shadow-2xl flex flex-col">
+                  {/* Decorative Gradient Background */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${category.color} opacity-0 group-hover:opacity-100 transition-opacity duration-700`} />
                   
-                  <div className="relative h-full p-6 flex flex-col bg-background/60 dark:bg-zinc-950/60">
-                    <CardHeader className="p-0 mb-4">
-                      <CardTitle className="flex items-center gap-4 text-2xl font-bold">
-                        <div className="p-3 bg-primary/20 rounded-xl group-hover:scale-110 transition-transform duration-500">
-                          <Icon className="h-6 w-6 text-primary" />
+                  <div className="relative h-full p-8 flex flex-col z-10">
+                    <CardHeader className="p-0 mb-6">
+                      <CardTitle className="flex items-center gap-5 text-2xl font-bold tracking-tight">
+                        <div className={`p-4 rounded-2xl bg-white/5 border border-white/10 group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-500 ${category.textColor}`}>
+                          <Icon className="h-6 w-6" />
                         </div>
                         {category.title}
                       </CardTitle>
