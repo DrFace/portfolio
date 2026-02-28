@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
+import { withBasePath } from "@/lib/paths"
 
 const projects = [
   {
@@ -152,7 +153,7 @@ export function ProjectsSection() {
                 <Card className="h-full group relative overflow-hidden bg-background/40 backdrop-blur-xl border-white/10 dark:border-white/5 hover:border-primary/50 transition-all duration-500 shadow-2xl flex flex-col">
                   <div className="relative overflow-hidden aspect-video md:aspect-auto md:h-64 bg-zinc-900/40 p-2">
                     <motion.img
-                      src={project.image}
+                      src={withBasePath(project.image)}
                       alt={project.title}
                       className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
                     />

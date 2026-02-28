@@ -1,5 +1,7 @@
 "use client"
 
+import { useState, useEffect } from "react"
+
 import professionalPhoto from "@/public/professionalphoto.jpeg"
 import { motion } from "framer-motion"
 import { Download, Mail, ArrowDown } from "lucide-react"
@@ -8,10 +10,20 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { withBasePath } from "@/lib/paths"
 
 export function HeroSection() {
+  const [mounted, setMounted] = useState(false)
+  
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href)
     if (element) element.scrollIntoView({ behavior: "smooth" })
   }
+
+  if (!mounted) return (
+    <section id="home" className="min-h-screen flex items-center justify-center py-24" />
+  )
 
   return (
     <section
@@ -112,7 +124,6 @@ export function HeroSection() {
               className="flex flex-col items-center gap-2 cursor-pointer opacity-50 hover:opacity-100 transition-opacity"
               onClick={() => scrollToSection("#about")}
             >
-              <span className="text-[10px] uppercase tracking-[0.3em] font-bold">Scroll</span>
               <div className="w-[1px] h-12 bg-gradient-to-b from-primary to-transparent" />
             </motion.div>
           </motion.div>
@@ -120,4 +131,4 @@ export function HeroSection() {
       </div>
     </section>
   )
-}
+}

@@ -14,11 +14,8 @@ export default function ScrollProgressBar() {
     };
 
     const detectTheme = () => {
-        const currentTheme =
-            document.documentElement.getAttribute("data-theme") === "dark"
-                ? "dark"
-                : "light";
-        setTheme(currentTheme);
+        const isDark = document.documentElement.classList.contains("dark");
+        setTheme(isDark ? "dark" : "light");
     };
 
     useEffect(() => {
@@ -27,12 +24,24 @@ export default function ScrollProgressBar() {
 
         window.addEventListener("scroll", handleScroll);
         window.addEventListener("resize", handleScroll);
-        window.addEventListener("themechange", detectTheme);
+
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.attributeName === "class") {
+                    detectTheme();
+                }
+            });
+        });
+
+        observer.observe(document.documentElement, {
+            attributes: true,
+            attributeFilter: ["class"],
+        });
 
         return () => {
             window.removeEventListener("scroll", handleScroll);
             window.removeEventListener("resize", handleScroll);
-            window.removeEventListener("themechange", detectTheme);
+            observer.disconnect();
         };
     }, []);
 
@@ -43,13 +52,13 @@ export default function ScrollProgressBar() {
             : "linear-gradient(90deg, #00c6ff, #0072ff)"; // light blue → blue
 
     return (
-        <div className="fixed top-0 left-0 w-full h-3 z-50 bg-gray-300 dark:bg-gray-900">
+        <div className="fixed top-0 left-0 w-full h-1 z-[100] bg-zinc-200/20 dark:bg-zinc-800/20">
             <div
-                className="h-full transition-all duration-150 ease-out shadow-lg"
+                className="h-full transition-all duration-150 ease-out"
                 style={{
                     width: `${scrollPercent}%`,
                     backgroundImage: barColor,
-                    boxShadow: "0 0 10px rgba(0,0,0,0.5)", // glow effect
+                    boxShadow: theme === "dark" ? "0 0 15px rgba(249, 212, 35, 0.4)" : "0 0 15px rgba(0, 198, 255, 0.4)",
                 }}
             />
         </div>

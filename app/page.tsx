@@ -16,7 +16,7 @@ import { Background } from "@/components/background"
 
 export default function Home() {
   return (
-    <div className="min-h-screen relative overflow-hidden">
+    <div className="min-h-screen relative overflow-x-hidden">
       <Background />
       <Cursor/>
       <Navigation />
