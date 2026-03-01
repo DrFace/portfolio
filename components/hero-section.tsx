@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react"
 
-import professionalPhoto from "@/public/professionalphoto.jpeg"
 import { motion } from "framer-motion"
 import { Download, Mail, ArrowDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -45,7 +44,7 @@ export function HeroSection() {
             <div className="absolute -inset-1 bg-gradient-to-r from-primary to-purple-600 rounded-2xl blur opacity-30 animate-pulse" />
             <div className="relative overflow-hidden rounded-2xl border-2 border-white/10 shadow-2xl">
               <Avatar className="w-56 h-80 rounded-none">
-                <AvatarImage src={professionalPhoto.src} alt="Professional Photo" className="object-cover" />
+                <AvatarImage src={withBasePath("/professionalphoto.jpeg")} alt="Professional Photo" className="object-cover" />
                 <AvatarFallback className="text-4xl">ML</AvatarFallback>
               </Avatar>
             </div>

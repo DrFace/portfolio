@@ -1,10 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
 
 export default function ScrollProgressBar() {
     const [scrollPercent, setScrollPercent] = useState(0);
-    const [theme, setTheme] = useState<"light" | "dark">("light");
+    const { resolvedTheme } = useTheme();
+    const [mounted, setMounted] = useState(false);
 
     const handleScroll = () => {
         const scrollTop = window.scrollY;
@@ -13,41 +15,24 @@ export default function ScrollProgressBar() {
         setScrollPercent(percent);
     };
 
-    const detectTheme = () => {
-        const isDark = document.documentElement.classList.contains("dark");
-        setTheme(isDark ? "dark" : "light");
-    };
-
     useEffect(() => {
+        setMounted(true);
         handleScroll();
-        detectTheme();
 
         window.addEventListener("scroll", handleScroll);
         window.addEventListener("resize", handleScroll);
 
-        const observer = new MutationObserver((mutations) => {
-            mutations.forEach((mutation) => {
-                if (mutation.attributeName === "class") {
-                    detectTheme();
-                }
-            });
-        });
-
-        observer.observe(document.documentElement, {
-            attributes: true,
-            attributeFilter: ["class"],
-        });
-
         return () => {
             window.removeEventListener("scroll", handleScroll);
             window.removeEventListener("resize", handleScroll);
-            observer.disconnect();
         };
     }, []);
 
-    // Vibrant colors
+    if (!mounted) return null;
+
+    // Vibrant colors based on resolvedTheme
     const barColor =
-        theme === "dark"
+        resolvedTheme === "dark"
             ? "linear-gradient(90deg, #ff4e50, #f9d423)" // red → yellow
             : "linear-gradient(90deg, #00c6ff, #0072ff)"; // light blue → blue
 
@@ -58,7 +43,7 @@ export default function ScrollProgressBar() {
                 style={{
                     width: `${scrollPercent}%`,
                     backgroundImage: barColor,
-                    boxShadow: theme === "dark" ? "0 0 15px rgba(249, 212, 35, 0.4)" : "0 0 15px rgba(0, 198, 255, 0.4)",
+                    boxShadow: resolvedTheme === "dark" ? "0 0 15px rgba(249, 212, 35, 0.4)" : "0 0 15px rgba(0, 198, 255, 0.4)",
                 }}
             />
         </div>
